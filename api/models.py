@@ -26,6 +26,12 @@ class SimpleOffer(models.Model):
     telephone = models.CharField(max_length=64)
     email = models.CharField(max_length=128)
 
+class HelpTimeOffer(models.Model):
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+
+    email = models.CharField(max_length=128)
+
 class UploadedFile(models.Model):
     bytes = models.TextField()
     filename = models.CharField(max_length=255)

@@ -4,8 +4,9 @@ from api import views
 
 router = DefaultRouter()
 router.register(r'refugee_camp', views.RefugeeCampViewSet)
-router.register(r'simple_offer', views.SimpleOfferViewSet)
 router.register(r'object_category', views.ObjectCategoryViewSet)
+router.register(r'simple_offer', views.SimpleOfferViewSet)
+router.register(r'help_time_offer', views.HelpTimeOfferViewSet)
 
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),

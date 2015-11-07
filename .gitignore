@@ -49,6 +49,8 @@ coverage.xml
 *.pot
 
 # Django stuff:
+staticfiles/
+/local.env
 *.log
 
 # Sphinx documentation
@@ -56,7 +58,3 @@ docs/_build/
 
 # PyBuilder
 target/
-
-# Django
-staticfiles/
-/local.env

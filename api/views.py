@@ -1,4 +1,4 @@
-import datetime
+from django.db.models import Q
 
 from rest_framework import filters
 from rest_framework import viewsets
@@ -17,11 +17,20 @@ class ObjectSubCategoryViewSet(viewsets.ModelViewSet):
     queryset = models.ObjectSubCategory.objects.all()
     serializer_class = serializers.ObjectSubCategorySerializer
 
+class SimpleOfferAgeFilter(filters.BaseFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        ts = request.query_params.get('ts', None)
+
+        if not ts:
+            return queryset
+
+        return queryset.filter(create_time__gt=ts)
+
 class SimpleOfferViewSet(viewsets.ModelViewSet):
     queryset = models.SimpleOffer.objects.all()
     serializer_class = serializers.SimpleOfferSerializer
 
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, SimpleOfferAgeFilter)
     filter_fields = ('category',)
 
 class HelpTimeRangeFilter(filters.BaseFilterBackend):
@@ -32,10 +41,7 @@ class HelpTimeRangeFilter(filters.BaseFilterBackend):
         if not start_time or not end_time:
             return queryset
 
-        return queryset.filter(date_time_field__range=(
-            datetime.datetime.combine(start_time, datetime.time.min),
-            datetime.datetime.combine(end_time, datetime.time.max))
-        )
+        return queryset.exclude(Q(start_time__gt=end_time) | Q(end_time__lt=start_time))
 
 class HelpTimeSearchViewSet(viewsets.ModelViewSet):
     queryset = models.HelpTimeSearch.objects.all()

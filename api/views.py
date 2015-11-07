@@ -1,10 +1,5 @@
-from django.contrib.auth.models import User
-from rest_framework import permissions
-from rest_framework import renderers
+from rest_framework import filters
 from rest_framework import viewsets
-from rest_framework.generics import ListAPIView
-from rest_framework.decorators import detail_route
-from rest_framework.response import Response
 from api.models import RefugeeCamp, SimpleOffer, ObjectCategory
 from api.serializers import RefugeeCampSerializer, SimpleOfferSerializer, ObjectCategorySerializer
 
@@ -19,3 +14,6 @@ class ObjectCategoryViewSet(viewsets.ModelViewSet):
 class SimpleOfferViewSet(viewsets.ModelViewSet):
     queryset = SimpleOffer.objects.all()
     serializer_class = SimpleOfferSerializer
+
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('category',)

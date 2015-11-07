@@ -7,3 +7,7 @@ whitenoise==2.0.2
 djangorestframework==3.3.0
 django-db-file-storage>=0.3.1
 Pillow==3.0.0
+django-filter>=0.11.0
+
+# Required for Web interface
+django-crispy-forms>=1.5.2

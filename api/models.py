@@ -13,5 +13,5 @@ class SimpleOffer(models.Model):
 
     # Owner's info
     city = models.CharField(max_length=64)
-    telnr = models.CharField(max_length=64)
+    telephone = models.CharField(max_length=64)
     email = models.CharField(max_length=128)

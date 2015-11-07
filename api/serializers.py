@@ -11,5 +11,5 @@ class SimpleOfferSerializer(serializers.Serializer):
     description = serializers.CharField()
 
     city = serializers.CharField()
-    telnr = serializers.CharField()
+    telephone = serializers.CharField()
     email = serializers.EmailField()

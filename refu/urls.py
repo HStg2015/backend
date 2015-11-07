@@ -5,6 +5,7 @@ from api import views
 router = DefaultRouter()
 router.register(r'refugee_camp', views.RefugeeCampViewSet)
 router.register(r'object_category', views.ObjectCategoryViewSet)
+router.register(r'object_sub_category', views.ObjectSubCategoryViewSet)
 router.register(r'simple_offer', views.SimpleOfferViewSet)
 router.register(r'help_time_search', views.HelpTimeSearchViewSet)
 

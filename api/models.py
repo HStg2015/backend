@@ -13,6 +13,13 @@ class ObjectCategory(models.Model):
     def __str__(self):
         return self.title
 
+class ObjectSubCategory(models.Model):
+    title = models.CharField(max_length=64)
+    parent = models.ForeignKey(ObjectCategory)
+
+    def __str__(self):
+        return "{0}/{1}".format(self.parent, self.title)
+
 class SimpleOffer(models.Model):
     category = models.ForeignKey(ObjectCategory, null=True)
     title = models.CharField(max_length=64)

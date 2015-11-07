@@ -13,6 +13,10 @@ class ObjectCategoryViewSet(viewsets.ModelViewSet):
     queryset = models.ObjectCategory.objects.all()
     serializer_class = serializers.ObjectCategorySerializer
 
+class ObjectSubCategoryViewSet(viewsets.ModelViewSet):
+    queryset = models.ObjectSubCategory.objects.all()
+    serializer_class = serializers.ObjectSubCategorySerializer
+
 class SimpleOfferViewSet(viewsets.ModelViewSet):
     queryset = models.SimpleOffer.objects.all()
     serializer_class = serializers.SimpleOfferSerializer

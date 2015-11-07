@@ -1,4 +1,4 @@
-import datetime
+from django.db.models import Q
 
 from rest_framework import filters
 from rest_framework import viewsets
@@ -32,10 +32,7 @@ class HelpTimeRangeFilter(filters.BaseFilterBackend):
         if not start_time or not end_time:
             return queryset
 
-        return queryset.filter(date_time_field__range=(
-            datetime.datetime.combine(start_time, datetime.time.min),
-            datetime.datetime.combine(end_time, datetime.time.max))
-        )
+        return queryset.exclude(Q(start_time__gt=end_time) | Q(end_time__lt=start_time))
 
 class HelpTimeSearchViewSet(viewsets.ModelViewSet):
     queryset = models.HelpTimeSearch.objects.all()

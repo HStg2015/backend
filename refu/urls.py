@@ -1,7 +1,10 @@
 from django.conf.urls import patterns, include, url
 from rest_framework.routers import DefaultRouter
+from api import views
 
 router = DefaultRouter()
+router.register(r'refugee_camp', views.RefugeeCampViewSet)
+router.register(r'simple_offer', views.SimpleOfferViewSet)
 
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),

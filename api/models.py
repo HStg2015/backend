@@ -1,5 +1,5 @@
 from django.db import models
-"""
+
 class RefugeeCamp(models.Model):
     # Location
     city = models.CharField(max_length=64)
@@ -15,4 +15,3 @@ class SimpleOffer(models.Model):
     city = models.CharField(max_length=64)
     telnr = models.CharField(max_length=64)
     email = models.CharField(max_length=128)
-"""

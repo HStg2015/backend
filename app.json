@@ -1,0 +1,8 @@
+{
+  "name": "Refu",
+  "description": "Solving the refugee management crisis in Germany.",
+  "image": "heroku/python",
+  "repository": "https://github.com/HStg2015/backend",
+  "keywords": ["python", "django", "refugees" ],
+  "addons": [ "heroku-postgresql" ]
+}

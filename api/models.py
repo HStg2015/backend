@@ -10,6 +10,9 @@ class RefugeeCamp(models.Model):
 class ObjectCategory(models.Model):
     title = models.CharField(max_length=64)
 
+    def __str__(self):
+        return self.title
+
 class SimpleOffer(models.Model):
     category = models.ForeignKey(ObjectCategory, null=True)
     title = models.CharField(max_length=64)

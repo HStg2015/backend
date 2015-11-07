@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 class RefugeeCampSerializer(serializers.Serializer):
-    email = serializers.EmailField()
     city = serializers.CharField()
     postcode = serializers.CharField()
     street = serializers.CharField()

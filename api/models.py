@@ -7,7 +7,11 @@ class RefugeeCamp(models.Model):
     street = models.CharField(max_length=128)
     streetnumber = models.CharField(max_length=32)
 
+class ObjectCategory(models.Model):
+    title = models.CharField(max_length=64)
+
 class SimpleOffer(models.Model):
+    category = models.ForeignKey(ObjectCategory, null=True)
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=512)
     create_time = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import SimpleOffer
+from api.models import SimpleOffer, ObjectCategory
 
 class RefugeeCampSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -9,9 +9,23 @@ class RefugeeCampSerializer(serializers.Serializer):
     street = serializers.CharField()
     streetnumber = serializers.CharField()
 
+class ObjectCategorySerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+
+    title = serializers.CharField()
+
+    def create(self, validated_data):
+        return ObjectCategory.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.save()
+        return instance
+
 class SimpleOfferSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
 
+    category = serializers.IntegerField()
     title = serializers.CharField()
     description = serializers.CharField()
     create_time = serializers.DateTimeField()

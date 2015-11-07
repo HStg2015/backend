@@ -3,20 +3,19 @@ import datetime
 from rest_framework import filters
 from rest_framework import viewsets
 
-from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, HelpTimeSearch
-from api.serializers import RefugeeCampSerializer, SimpleOfferSerializer, ObjectCategorySerializer, HelpTimeSearchSerializer
+from api import models, serializers
 
 class RefugeeCampViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = RefugeeCamp.objects.all()
-    serializer_class = RefugeeCampSerializer
+    queryset = models.RefugeeCamp.objects.all()
+    serializer_class = serializers.RefugeeCampSerializer
 
 class ObjectCategoryViewSet(viewsets.ModelViewSet):
-    queryset = ObjectCategory.objects.all()
-    serializer_class = ObjectCategorySerializer
+    queryset = models.ObjectCategory.objects.all()
+    serializer_class = serializers.ObjectCategorySerializer
 
 class SimpleOfferViewSet(viewsets.ModelViewSet):
-    queryset = SimpleOffer.objects.all()
-    serializer_class = SimpleOfferSerializer
+    queryset = models.SimpleOffer.objects.all()
+    serializer_class = serializers.SimpleOfferSerializer
 
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('category',)
@@ -35,7 +34,7 @@ class HelpTimeRangeFilter(filters.BaseFilterBackend):
         )
 
 class HelpTimeSearchViewSet(viewsets.ModelViewSet):
-    queryset = HelpTimeSearch.objects.all()
-    serializer_class = HelpTimeSearchSerializer
+    queryset = models.HelpTimeSearch.objects.all()
+    serializer_class = serializers.HelpTimeSearchSerializer
 
     filter_backends = (HelpTimeRangeFilter,)

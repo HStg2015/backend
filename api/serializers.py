@@ -37,15 +37,9 @@ class SimpleOfferSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
     def create(self, validated_data):
-        """
-        Create and return a new `Snippet` instance, given the validated data.
-        """
         return SimpleOffer.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        """
-        Update and return an existing `Snippet` instance, given the validated data.
-        """
         instance.category = validated_data.get('category', instance.category)
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
@@ -65,15 +59,9 @@ class HelpTimeOfferSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
     def create(self, validated_data):
-        """
-        Create and return a new `Snippet` instance, given the validated data.
-        """
         return HelpTimeOffer.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        """
-        Update and return an existing `Snippet` instance, given the validated data.
-        """
         instance.start_time = validated_data.get('start_time', instance.start_time)
         instance.end_time = validated_data.get('end_time', instance.end_time)
         instance.email = validated_data.get('email', instance.email)

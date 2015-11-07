@@ -13,4 +13,3 @@ class DbStorage(DatabaseFileStorage):
     def _get_storage_attributes(self, name):
         return DatabaseFileStorage._get_storage_attributes(self,
                                                            normpath(name))
-    

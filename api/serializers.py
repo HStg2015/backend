@@ -2,12 +2,16 @@ from rest_framework import serializers
 from api.models import SimpleOffer
 
 class RefugeeCampSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+
     city = serializers.CharField()
     postcode = serializers.CharField()
     street = serializers.CharField()
     streetnumber = serializers.CharField()
 
 class SimpleOfferSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+
     title = serializers.CharField()
     description = serializers.CharField()
     image = serializers.ImageField()

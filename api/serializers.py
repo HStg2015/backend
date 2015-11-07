@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework import relations
 from api.models import SimpleOffer, ObjectCategory
 
 class RefugeeCampSerializer(serializers.Serializer):
@@ -25,11 +26,11 @@ class ObjectCategorySerializer(serializers.Serializer):
 class SimpleOfferSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
 
-    category = serializers.IntegerField()
+    category = relations.PrimaryKeyRelatedField(queryset=ObjectCategory.objects.all())
     title = serializers.CharField()
     description = serializers.CharField()
     create_time = serializers.DateTimeField()
-    image = serializers.ImageField()
+    image = serializers.ImageField(allow_null=True)
 
     city = serializers.CharField()
     telephone = serializers.CharField()
@@ -45,6 +46,7 @@ class SimpleOfferSerializer(serializers.Serializer):
         """
         Update and return an existing `Snippet` instance, given the validated data.
         """
+        instance.category = validated_data.get('category', instance.category)
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
         instance.image = validated_data.get('image', instance.image)

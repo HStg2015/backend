@@ -8,5 +8,6 @@ router.register(r'simple_offer', views.SimpleOfferViewSet)
 
 urlpatterns = patterns('',
     url(r'^', include(router.urls)),
+    url(r'^files/', include('db_file_storage.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )

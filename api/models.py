@@ -10,7 +10,7 @@ class RefugeeCamp(models.Model):
 class SimpleOffer(models.Model):
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=512)
-
+    create_time = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='api.UploadedFile/bytes/filename/mimetype',
                               blank=True, null=True)
 

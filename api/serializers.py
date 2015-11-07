@@ -14,6 +14,7 @@ class SimpleOfferSerializer(serializers.Serializer):
 
     title = serializers.CharField()
     description = serializers.CharField()
+    create_time = serializers.DateTimeField()
     image = serializers.ImageField()
 
     city = serializers.CharField()

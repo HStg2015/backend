@@ -15,3 +15,8 @@
 * Run ``python manage.py migrate``
 * On Windows: Run ``heroku local -e local.env -f Procfile.windows``
 * On Unix: Run ``heroku local -e local.env``
+
+## Future improvements
+
+* Rename `SimpleOffer` to distinguish between multiple types
+* Add proper account+authentication system

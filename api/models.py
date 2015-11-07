@@ -7,6 +7,10 @@ class RefugeeCamp(models.Model):
     street = models.CharField(max_length=128)
     streetnumber = models.CharField(max_length=32)
 
+    def __str__(self):
+        return "{0} {1}: {2} {3}".format(self.postcode, self.city,
+                                         self.street, self.streetnumber)
+
 class ObjectCategory(models.Model):
     title = models.CharField(max_length=64)
 
@@ -37,7 +41,7 @@ class HelpTimeSearch(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
-    email = models.CharField(max_length=128)
+    camp = models.ForeignKey(RefugeeCamp)
 
 class UploadedFile(models.Model):
     bytes = models.TextField()

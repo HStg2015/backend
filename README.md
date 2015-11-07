@@ -9,8 +9,16 @@
 
 ## Running
 
-* Create local.env containing your `DATABASE_URL`.
-  e.g. ``echo "DATABASE_URL=postgres://postgres@localhost/refu" >> local.env``
+* Create local.env containing your these properties:
+    * `DATABASE_URL`: Database connection string
+    * `SECRET_KEY`: Session secret
+
+    Example `local.env` file:
+    ```
+    SECRET_KEY=abcdefghij28731879
+    DATABASE_URL=postgres://postgres@localhost/refu
+    ```
+
 * Run ``python manage.py collectstatic``
 * Run ``python manage.py migrate``
 * On Windows: Run ``heroku local -e local.env -f Procfile.windows``

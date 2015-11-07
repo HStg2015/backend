@@ -17,11 +17,20 @@ class ObjectSubCategoryViewSet(viewsets.ModelViewSet):
     queryset = models.ObjectSubCategory.objects.all()
     serializer_class = serializers.ObjectSubCategorySerializer
 
+class SimpleOfferAgeFilter(filters.BaseFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        ts = request.query_params.get('ts', None)
+
+        if not ts:
+            return queryset
+
+        return queryset.filter(create_time__gt=ts)
+
 class SimpleOfferViewSet(viewsets.ModelViewSet):
     queryset = models.SimpleOffer.objects.all()
     serializer_class = serializers.SimpleOfferSerializer
 
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, SimpleOfferAgeFilter)
     filter_fields = ('category',)
 
 class HelpTimeRangeFilter(filters.BaseFilterBackend):

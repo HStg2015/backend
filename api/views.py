@@ -13,10 +13,6 @@ class ObjectCategoryViewSet(viewsets.ModelViewSet):
     queryset = models.ObjectCategory.objects.all()
     serializer_class = serializers.ObjectCategorySerializer
 
-class ObjectSubCategoryViewSet(viewsets.ModelViewSet):
-    queryset = models.ObjectSubCategory.objects.all()
-    serializer_class = serializers.ObjectSubCategorySerializer
-
 class SimpleOfferAgeFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         ts = request.query_params.get('ts', None)

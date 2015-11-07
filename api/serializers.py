@@ -23,21 +23,6 @@ class ObjectCategorySerializer(serializers.Serializer):
         instance.save()
         return instance
 
-class ObjectSubCategorySerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    parent = relations.PrimaryKeyRelatedField(queryset=ObjectCategory.objects.all())
-
-    title = serializers.CharField(max_length=64)
-
-    def create(self, validated_data):
-        return ObjectSubCategory.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.parent = validated_data.get('parent', instance.parent)
-        instance.title = validated_data.get('title', instance.title)
-        instance.save()
-        return instance
-
 class SimpleOfferSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
 

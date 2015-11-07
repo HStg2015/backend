@@ -11,4 +11,6 @@
 
 * Write local.env containing your `DATABASE_URL`.
   e.g. ``DATABASE_URL=postgres://postgres@localhost/refu``
+* Run ``python manage.py collectstatic``
+* Run ``python manage.py migrate``
 * ``heroku local -e local.env -f Procfile.windows``

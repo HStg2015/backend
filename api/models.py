@@ -37,7 +37,7 @@ class HelpTimeSearch(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
-    email = models.CharField(max_length=128)
+    camp = models.ForeignKey(RefugeeCamp)
 
 class UploadedFile(models.Model):
     bytes = models.TextField()

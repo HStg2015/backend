@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import relations
-from api.models import SimpleOffer, ObjectCategory, ObjectSubCategory, HelpTimeSearch
+from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, ObjectSubCategory, HelpTimeSearch
 
 class RefugeeCampSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -71,7 +71,7 @@ class HelpTimeSearchSerializer(serializers.Serializer):
     start_time = serializers.DateTimeField()
     end_time = serializers.DateTimeField()
 
-    email = serializers.EmailField(max_length=128)
+    camp = relations.PrimaryKeyRelatedField(queryset=RefugeeCamp.objects.all())
 
     def create(self, validated_data):
         return HelpTimeSearch.objects.create(**validated_data)
@@ -79,6 +79,6 @@ class HelpTimeSearchSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.start_time = validated_data.get('start_time', instance.start_time)
         instance.end_time = validated_data.get('end_time', instance.end_time)
-        instance.email = validated_data.get('email', instance.email)
+        instance.camp = validated_data.get('camp', instance.camp)
         instance.save()
         return instance

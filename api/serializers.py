@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import relations
-from api.models import SimpleOffer, ObjectCategory, HelpTimeOffer
+from api.models import SimpleOffer, ObjectCategory, HelpTimeSearch
 
 class RefugeeCampSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -50,7 +50,7 @@ class SimpleOfferSerializer(serializers.Serializer):
         instance.save()
         return instance
 
-class HelpTimeOfferSerializer(serializers.Serializer):
+class HelpTimeSearchSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
 
     start_time = serializers.DateTimeField()

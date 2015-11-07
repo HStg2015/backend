@@ -1,7 +1,7 @@
 from rest_framework import filters
 from rest_framework import viewsets
-from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, HelpTimeOffer
-from api.serializers import RefugeeCampSerializer, SimpleOfferSerializer, ObjectCategorySerializer, HelpTimeOfferSerializer
+from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, HelpTimeSearch
+from api.serializers import RefugeeCampSerializer, SimpleOfferSerializer, ObjectCategorySerializer, HelpTimeSearchSerializer
 
 class RefugeeCampViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = RefugeeCamp.objects.all()
@@ -18,6 +18,6 @@ class SimpleOfferViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('category',)
 
-class HelpTimeOfferViewSet(viewsets.ModelViewSet):
-    queryset = HelpTimeOffer.objects.all()
-    serializer_class = HelpTimeOfferSerializer
+class HelpTimeSearchViewSet(viewsets.ModelViewSet):
+    queryset = HelpTimeSearch.objects.all()
+    serializer_class = HelpTimeSearchSerializer

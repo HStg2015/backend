@@ -74,7 +74,7 @@ class HelpTimeSearchSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=128)
 
     def create(self, validated_data):
-        return HelpTimeOffer.objects.create(**validated_data)
+        return HelpTimeSearch.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.start_time = validated_data.get('start_time', instance.start_time)

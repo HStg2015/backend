@@ -5,15 +5,15 @@ from api.models import SimpleOffer, ObjectCategory, ObjectSubCategory, HelpTimeS
 class RefugeeCampSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
 
-    city = serializers.CharField()
-    postcode = serializers.CharField()
-    street = serializers.CharField()
-    streetnumber = serializers.CharField()
+    city = serializers.CharField(max_length=64)
+    postcode = serializers.CharField(max_length=16)
+    street = serializers.CharField(max_length=128)
+    streetnumber = serializers.CharField(max_length=32)
 
 class ObjectCategorySerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
 
-    title = serializers.CharField()
+    title = serializers.CharField(max_length=64)
 
     def create(self, validated_data):
         return ObjectCategory.objects.create(**validated_data)
@@ -27,7 +27,7 @@ class ObjectSubCategorySerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     parent = relations.PrimaryKeyRelatedField(queryset=ObjectCategory.objects.all())
 
-    title = serializers.CharField()
+    title = serializers.CharField(max_length=64)
 
     def create(self, validated_data):
         return ObjectSubCategory.objects.create(**validated_data)
@@ -42,14 +42,14 @@ class SimpleOfferSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
 
     category = relations.PrimaryKeyRelatedField(queryset=ObjectCategory.objects.all())
-    title = serializers.CharField()
+    title = serializers.CharField(max_length=64)
     description = serializers.CharField(max_length=4096)
     create_time = serializers.DateTimeField()
     image = serializers.ImageField(allow_null=True)
 
-    city = serializers.CharField()
-    telephone = serializers.CharField()
-    email = serializers.EmailField()
+    city = serializers.CharField(max_length=64)
+    telephone = serializers.CharField(max_length=64)
+    email = serializers.EmailField(max_length=128)
 
     def create(self, validated_data):
         return SimpleOffer.objects.create(**validated_data)
@@ -71,7 +71,7 @@ class HelpTimeSearchSerializer(serializers.Serializer):
     start_time = serializers.DateTimeField()
     end_time = serializers.DateTimeField()
 
-    email = serializers.EmailField()
+    email = serializers.EmailField(max_length=128)
 
     def create(self, validated_data):
         return HelpTimeOffer.objects.create(**validated_data)

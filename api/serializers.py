@@ -10,6 +10,7 @@ class RefugeeCampSerializer(serializers.Serializer):
 class SimpleOfferSerializer(serializers.Serializer):
     title = serializers.CharField()
     description = serializers.CharField()
+    image = serializers.ImageField()
 
     city = serializers.CharField()
     telephone = serializers.CharField()
@@ -27,9 +28,9 @@ class SimpleOfferSerializer(serializers.Serializer):
         """
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
+        instance.image = validated_data.get('image', instance.image)
         instance.city = validated_data.get('city', instance.city)
         instance.telephone = validated_data.get('telephone', instance.telephone)
         instance.email = validated_data.get('email', instance.email)
         instance.save()
         return instance
-    

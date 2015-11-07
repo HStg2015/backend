@@ -23,7 +23,7 @@ class ObjectSubCategory(models.Model):
 class SimpleOffer(models.Model):
     category = models.ForeignKey(ObjectCategory, null=True)
     title = models.CharField(max_length=64)
-    description = models.CharField(max_length=512)
+    description = models.CharField(max_length=4096)
     create_time = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='api.UploadedFile/bytes/filename/mimetype',
                               blank=True, null=True)

@@ -43,7 +43,7 @@ class SimpleOfferSerializer(serializers.Serializer):
 
     category = relations.PrimaryKeyRelatedField(queryset=ObjectCategory.objects.all())
     title = serializers.CharField()
-    description = serializers.CharField()
+    description = serializers.CharField(max_length=4096)
     create_time = serializers.DateTimeField()
     image = serializers.ImageField(allow_null=True)
 

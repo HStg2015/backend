@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import relations
-from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, ObjectSubCategory, HelpTimeSearch
+from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, HelpTimeSearch
 
 class RefugeeCampSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -19,21 +19,6 @@ class ObjectCategorySerializer(serializers.Serializer):
         return ObjectCategory.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.title = validated_data.get('title', instance.title)
-        instance.save()
-        return instance
-
-class ObjectSubCategorySerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    parent = relations.PrimaryKeyRelatedField(queryset=ObjectCategory.objects.all())
-
-    title = serializers.CharField(max_length=64)
-
-    def create(self, validated_data):
-        return ObjectSubCategory.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.parent = validated_data.get('parent', instance.parent)
         instance.title = validated_data.get('title', instance.title)
         instance.save()
         return instance

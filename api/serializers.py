@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework import relations
-from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, ObjectSubCategory, HelpTimeSearch
+from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, HelpTimeSearch
 
 class RefugeeCampSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)

@@ -1,6 +1,8 @@
+import logging
+
 from rest_framework import serializers
 from rest_framework import relations
-from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, ObjectSubCategory, HelpTimeSearch
+from api.models import RefugeeCamp, SimpleOffer, ObjectCategory, HelpTimeSearch
 
 class RefugeeCampSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -29,7 +31,7 @@ class SimpleOfferSerializer(serializers.Serializer):
     category = relations.PrimaryKeyRelatedField(queryset=ObjectCategory.objects.all())
     title = serializers.CharField(max_length=64)
     description = serializers.CharField(max_length=4096)
-    create_time = serializers.DateTimeField()
+    create_time = serializers.DateTimeField(read_only=True)
     image = serializers.ImageField(allow_null=True)
 
     city = serializers.CharField(max_length=64)
